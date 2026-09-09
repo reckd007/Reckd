@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-reckd-orange: #ff6b00;
+  --color-reckd-orange-hover: #e05e00;
+  --color-reckd-dark: #0a0a0a;
+  --color-reckd-card: #121214;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(18, 18, 20, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(255, 107, 0, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(255, 107, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Custom glowing effect */
+.orange-glow {
+  box-shadow: 0 0 25px -5px rgba(255, 107, 0, 0.5);
+}
+
+.orange-text-glow {
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.6);
+}
+
+/* Orange Celestial Sphere & Revolving Waves Animations */
+@keyframes celestial-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes celestial-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes celestial-wave-orbit-1 {
+  0% {
+    transform: rotateX(68deg) rotateY(18deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(68deg) rotateY(18deg) rotateZ(360deg);
+  }
+}
+
+@keyframes celestial-wave-orbit-2 {
+  0% {
+    transform: rotateX(72deg) rotateY(-28deg) rotateZ(360deg);
+  }
+  100% {
+    transform: rotateX(72deg) rotateY(-28deg) rotateZ(0deg);
+  }
+}
+
+@keyframes celestial-wave-orbit-3 {
+  0% {
+    transform: rotateX(80deg) rotateY(35deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(80deg) rotateY(35deg) rotateZ(360deg);
+  }
+}
+
+@keyframes wave-ripple-pulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes solar-flare-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 35px rgba(255, 107, 0, 0.6));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 65px rgba(255, 107, 0, 0.9));
+  }
+}
+
+.animate-celestial-spin {
+  animation: celestial-spin 22.4s linear infinite; /* 20% faster than 28s */
+}
+
+.animate-celestial-spin-fast {
+  animation: celestial-spin 12.8s linear infinite; /* 20% faster than 16s */
+}
+
+.animate-celestial-spin-reverse {
+  animation: celestial-spin-reverse 17.6s linear infinite; /* 20% faster than 22s */
+}
+
+.animate-wave-orbit-1 {
+  animation: celestial-wave-orbit-1 7.2s linear infinite; /* 20% faster than 9s */
+  transform-style: preserve-3d;
+}
+
+.animate-wave-orbit-2 {
+  animation: celestial-wave-orbit-2 10.4s linear infinite; /* 20% faster than 13s */
+  transform-style: preserve-3d;
+}
+
+.animate-wave-orbit-3 {
+  animation: celestial-wave-orbit-3 14.4s linear infinite; /* 20% faster than 18s */
+  transform-style: preserve-3d;
+}
+
+/* 20% faster spinning & revolving dedicated for mini cursor follower */
+.animate-follower-spin {
+  animation: celestial-spin 5.5s linear infinite;
+}
+
+.animate-follower-wave-orbit-1 {
+  animation: celestial-wave-orbit-1 4.8s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.animate-follower-wave-orbit-2 {
+  animation: celestial-wave-orbit-2 6.8s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.animate-wave-pulse {
+  animation: wave-ripple-pulse 3.5s ease-in-out infinite;
+}
+
+.animate-solar-flare {
+  animation: solar-flare-pulse 4.5s ease-in-out infinite;
+}
+
